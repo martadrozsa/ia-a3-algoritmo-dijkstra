@@ -48,7 +48,6 @@ public class main {
     }
 
 
-
     public static void print(int idPrev, Node node) {
         System.out.println(idPrev + " -> " + node.getId());
 
