@@ -1,6 +1,6 @@
-### Desenvolvimento do algoritmo de Dijkstra
+## Desenvolvimento do algoritmo de Dijkstra
 
-Dado que é definido um nó de origem e um nó de destino, faça os sequintes passos para encontrar o destino:
+### Dado seja definido um nó de origem e um nó de destino, faça os sequintes passos para encontrar o destino:
 
 #### Passo 1
 - Setar a distância do nó inicial para 0
@@ -16,10 +16,25 @@ Dado que é definido um nó de origem e um nó de destino, faça os sequintes pa
 - Setar as distâncias de outros nós para o infinito = Integer.MAX_VALUE
 
 #### Passo 5
-- Verificar quais são os nós vizinhos do nó inicial e calcular a distância entre eles, incluir o nó testado na LA
+- Retirar da LA o nó com a menor distância (nó corrente)
 
 #### Passo 6
-- Colocar o nó visitado na LF
+- Se o nó corrente for o nó de destino, solução encontrada (finaliza o algoritmo)
 
-#### Passo 7 
-- Enquando a LA não estiver vazia, repita o Passo 5
+#### Passo 7
+- Para cada nó vizinho do nó corrente
+  - calcular a distância total para chegar até o nó vizinho 
+    - distância total até o nó corrente + peso para chegar ao nó vizinho a partir do nó corrente
+  - se o nó vizinho ainda não estiver na LA, adicionar o nó na LA
+  - se o nó estiver na LA, atualizar nó vizinho na LA apenas se a distância total calculada for menor do que a distância  do nó  vizinho já na LA
+
+#### Passo 8
+- Adicionar o nó corrente na LF
+
+#### Passo 9 
+- Enquanto a LA não estiver vazia, repita o Passo 5
+
+#### Passo 10
+- Se chegar nesse passo, todos os nós foram visitados (estão na LF) e o destino não foi encontrado
+
+
