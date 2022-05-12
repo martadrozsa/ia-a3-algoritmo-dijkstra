@@ -23,6 +23,7 @@
 
 #### Passo 7
 - Para cada nó vizinho do nó corrente
+  - se o nó vizinho já estiver na LF siga para o próximo vizinho
   - calcular a distância total para chegar até o nó vizinho 
     - distância total até o nó corrente + peso para chegar ao nó vizinho a partir do nó corrente
   - se o nó vizinho ainda não estiver na LA, adicionar o nó na LA
