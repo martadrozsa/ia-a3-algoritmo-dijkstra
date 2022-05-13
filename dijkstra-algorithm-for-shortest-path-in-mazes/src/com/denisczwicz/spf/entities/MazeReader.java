@@ -48,7 +48,6 @@ public class MazeReader {
                 nodes.add(node);
             }
         }
-
         return nodes;
     }
 }
