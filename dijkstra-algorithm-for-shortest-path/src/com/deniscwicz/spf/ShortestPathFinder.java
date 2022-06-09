@@ -15,7 +15,12 @@ public class ShortestPathFinder {
         // as distancias já são infinitas por design (Integer.MAX_VALUE)
 
         // nós ainda em avaliação. Ordena em ordem crescente (do menor para o maior).
-        TreeSet<Node> listaAberta = new TreeSet<>((n1, n2) -> n1.getDistance() - n2.getDistance());
+        TreeSet<Node> listaAberta = new TreeSet<>((n1, n2) -> {
+            if (n1.getDistance() == n2.getDistance()) {
+                return 1;
+            }
+            return n1.getDistance() - n2.getDistance();
+        });
         // nós que já foi definido o menor caminho.
         List<Node> listaFechada = new ArrayList<>();
 
@@ -29,16 +34,15 @@ public class ShortestPathFinder {
             Node currNode = listaAberta.pollFirst();
 
             if (currNode.getId().equals(target.getId())) {
-                System.out.println("Destino alcançado!");
+//                System.out.println("Destino alcançado!");
                 return currNode;
             }
 
             for (Edge edge : currNode.getEdges()) {
                 Node neighborNode = edge.getNode();
-                System.out.println("Testing from " + currNode.getId() + " to " +  neighborNode.getId());
                 // se o nó vizinho já estiver na LF siga para o próximo vizinho
                 if (listaFechada.contains(neighborNode)) {
-                    System.out.println("Neighbor Node " + neighborNode.getId() + " já está na lista fechada.");
+//                    System.out.println("Neighbor Node " + neighborNode.getId() + " já está na lista fechada.");
                     continue;
                 }
 
@@ -60,7 +64,7 @@ public class ShortestPathFinder {
 
         } while (!listaAberta.isEmpty());
 
-        System.out.println("Nodo alvo nao foi encontrado!");
+//        System.out.println("Nodo alvo nao foi encontrado!");
 
         return null;
     }

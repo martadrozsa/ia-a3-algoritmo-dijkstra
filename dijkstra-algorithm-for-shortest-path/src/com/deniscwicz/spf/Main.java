@@ -3,60 +3,55 @@ package com.deniscwicz.spf;
 import com.deniscwicz.spf.entities.Edge;
 import com.deniscwicz.spf.entities.Node;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
-
-//        Node nodeA = new Node("A");
-//        Node nodeB = new Node("B");
-//        Node nodeC = new Node("C");
-//        Node nodeD = new Node("D");
-//        Node nodeE = new Node("E");
-//        Node nodeF = new Node("F");
-//
-//        Edge edgeA_B = new Edge(10, nodeB);
-//        nodeA.addEdge(edgeA_B);
-//        Edge edgeA_C = new Edge(15, nodeC);
-//        nodeA.addEdge(edgeA_C);
-//
-//        Edge edgeB_D = new Edge(12, nodeD);
-//        nodeB.addEdge(edgeB_D);
-//        Edge edgeB_F = new Edge(15, nodeF);
-//        nodeB.addEdge(edgeB_F);
-//
-//        Edge edgeC_E = new Edge(10, nodeE);
-//        nodeC.addEdge(edgeC_E);
-//
-//        Edge edgeD_E = new Edge(2, nodeE);
-//        nodeD.addEdge(edgeD_E);
-//        Edge edgeD_F = new Edge(1, nodeF);
-//        nodeD.addEdge(edgeD_F);
-//
-//        Edge edgeF_E = new Edge(5, nodeE);
-//        nodeF.addEdge(edgeF_E);
-//
-//        Node result = ShortestPathFinder.find(nodeA, nodeF);
-//        print("", result);
-
-
-//        SampleGraph graph = new SampleGraph();
         Maze01 graph =  new Maze01();
         graph.createGraph();
 
         Node dest = ShortestPathFinder.find(graph.getStartNode(), graph.getEndNode());
+        List<String> solution = getSolution(dest);
+        System.out.println("Solução do labirinto 1:");
+        printSolution(solution);
 
-        printSolution(dest);
+        Maze02 graph2 =  new Maze02();
+        graph2.createGraph();
+
+        Node dest2 = ShortestPathFinder.find(graph2.getStartNode(), graph2.getEndNode());
+        List<String> solution2 = getSolution(dest2);
+        System.out.println("Solução do labirinto 2:");
+        printSolution(solution2);
     }
 
-    public static  void printSolution(Node resultNode) {
-        if (resultNode == null) {
-            return;
+    public static void printSolution(List<String> solution) {
+        for (int i = 0; i < solution.size(); i++) {
+            String curr = solution.get(i);
+            System.out.print(curr);
+            if (i+1 < solution.size()) {
+                System.out.print(" -> ");
+            }
         }
 
+        System.out.println();
+    }
+
+    public static List<String> getSolution(Node resultNode) {
+        if (resultNode == null) {
+            return List.of();
+        }
+
+        List<String> solution = new ArrayList<>();
         do {
-            System.out.println(resultNode.getId());
+            solution.add(resultNode.getId());
             resultNode = resultNode.getPrevNode();
-        } while (resultNode.getPrevNode() != null);
+        } while (resultNode != null);
+
+        Collections.reverse(solution);
+        return solution;
     }
 
     public static void printGraph(String idPrev, Node node) {

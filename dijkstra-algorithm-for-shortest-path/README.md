@@ -1,6 +1,6 @@
 ## Desenvolvimento do algoritmo de Dijkstra
 
-### Dado seja definido um nó de origem e um nó de destino, faça os sequintes passos para encontrar o destino:
+### Dado que seja definido um nó de origem e um nó de destino, faça os seguintes passos para encontrar o destino:
 
 #### Passo 1
 - Setar a distância do nó inicial para 0
