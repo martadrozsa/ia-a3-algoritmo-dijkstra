@@ -41,13 +41,45 @@ public class MazeReader {
 
         List<Node> nodes = new ArrayList<>();
 
+
+        // criação de nodes
         for (int i = 0; i < mazeData.size(); i++) {
-            for (int j = 0; j < mazeData.get(i).size(); j++) {
+            List<Integer> row = mazeData.get(i);  //pegou a linha
+
+            for (int j = 0; j < row.size(); j++) {
+                //para verificar se existe ligação no nó (se 1 ou se 0)
+                if (row.get(j) == 0) {
+                    continue;
+                }
                 String id = i + "," + j;
-                Node node = new Node(id);
+
+                Integer weight = row.get(j); // valor na posição j
+
+                Node node = new Node(id, i, j, weight);
                 nodes.add(node);
             }
         }
+
+        int north; //      i = i - 1       &&    j = j
+        int west;  //      i = i          &&    j = j - 1
+        int east;  //      i = i          &&    j = j + 1
+        int south; //      i = i + 1      &&    j = j
+
+        for (Node node : nodes) {
+
+            int nodeI = node.getI();
+            int nodeJ = node.getJ();
+
+            int northI =  nodeI - 1;
+            int northJ = nodeJ;
+            String northId = northI + "," + northJ;
+
+           // Node northNeighbor =
+        }
+
+        //ligação dos nodes
+        //
+
         return nodes;
     }
 }

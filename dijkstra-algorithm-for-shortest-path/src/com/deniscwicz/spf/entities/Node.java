@@ -51,4 +51,19 @@ public class Node {
                 "id='" + id + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Node)) return false;
+
+        Node node = (Node) o;
+
+        return getId().equals(node.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
 }

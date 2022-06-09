@@ -35,11 +35,14 @@ public class ShortestPathFinder {
 
             for (Edge edge : currNode.getEdges()) {
                 Node neighborNode = edge.getNode();
+                System.out.println("Testing from " + currNode.getId() + " to " +  neighborNode.getId());
+                // se o nó vizinho já estiver na LF siga para o próximo vizinho
                 if (listaFechada.contains(neighborNode)) {
                     System.out.println("Neighbor Node " + neighborNode.getId() + " já está na lista fechada.");
                     continue;
                 }
 
+                // se o nó estiver na LA, atualizar nó vizinho na LA apenas se a distância total calculada for menor do que a distância do nó vizinho já na LA
                 // Soma a distância total até o nodo current com a distância para o nodo em teste.
                 int pathDistance = currNode.getDistance() + edge.getDistance();
 
@@ -49,7 +52,6 @@ public class ShortestPathFinder {
                     neighborNode.setPrevNode(currNode);
                 }
 
-                // A própria estrutura de dados (TreeSet) evita que duplicados sejam adicionados
                 listaAberta.removeIf(n -> n.getId().equals(neighborNode.getId()));
                 listaAberta.add(neighborNode);
             }
